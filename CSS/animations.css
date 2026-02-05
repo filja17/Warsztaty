@@ -1,0 +1,446 @@
+/* ========================================
+   ANIMATIONS.CSS
+   Wszystkie animacje i efekty scroll
+   ======================================== */
+
+/* ========================================
+   SCROLL REVEAL – Stany animacji
+   ======================================== */
+
+/* Stan początkowy – ukryty */
+.reveal-hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Stan końcowy – widoczny */
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Warianty animacji */
+[data-reveal="fade"] .reveal-hidden,
+.reveal-hidden[data-reveal="fade"] {
+    transform: none;
+}
+
+[data-reveal="slide-up"] .reveal-hidden,
+.reveal-hidden[data-reveal="slide-up"] {
+    transform: translateY(60px);
+}
+
+[data-reveal="slide-left"] .reveal-hidden,
+.reveal-hidden[data-reveal="slide-left"] {
+    transform: translateX(40px);
+}
+
+[data-reveal="slide-right"] .reveal-hidden,
+.reveal-hidden[data-reveal="slide-right"] {
+    transform: translateX(-40px);
+}
+
+[data-reveal="scale"] .reveal-hidden,
+.reveal-hidden[data-reveal="scale"] {
+    transform: scale(0.95);
+}
+
+[data-reveal="blur"] .reveal-hidden,
+.reveal-hidden[data-reveal="blur"] {
+    filter: blur(10px);
+    transform: translateY(20px);
+    transition: 
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal="blur"] .reveal-visible,
+.reveal-visible[data-reveal="blur"] {
+    filter: blur(0);
+}
+
+
+/* ========================================
+   PAGE LOADER
+   ======================================== */
+
+.page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--color-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+}
+
+.page-loader.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.page-loader.is-loaded {
+    opacity: 0;
+}
+
+.page-loader__content {
+    width: 60px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.page-loader__line {
+    width: 100%;
+    height: 100%;
+    background: var(--color-text);
+    transform: translateX(-100%);
+    animation: loaderSlide 1.2s ease-in-out infinite;
+}
+
+@keyframes loaderSlide {
+    0% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Body state during transition */
+body.is-transitioning {
+    pointer-events: none;
+}
+
+body.is-loaded .page-loader {
+    pointer-events: none;
+}
+
+
+/* ========================================
+   NAVBAR – dodatkowe stany
+   ======================================== */
+
+.nav--scrolled {
+    padding-top: var(--space-sm);
+    padding-bottom: var(--space-sm);
+    background: rgba(250, 250, 248, 0.95);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.nav--hidden {
+    transform: translateY(-100%);
+}
+
+.nav {
+    transition: 
+        padding 0.3s ease,
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* ========================================
+   MOBILE MENU – Animacje
+   ======================================== */
+
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    z-index: calc(var(--z-nav) - 1);
+    transition: 
+        opacity 0.4s ease,
+        visibility 0.4s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.nav-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Mobile menu open state */
+@media (max-width: 768px) {
+    .nav__menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--color-bg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: var(--space-lg);
+        
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: 
+            opacity 0.4s ease,
+            visibility 0.4s ease,
+            transform 0.4s ease;
+        
+        z-index: var(--z-nav);
+    }
+    
+    .nav__menu.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .nav__menu .nav__link {
+        font-size: var(--text-2xl);
+        font-family: var(--font-heading);
+        font-weight: 300;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 
+            opacity 0.4s ease,
+            transform 0.4s ease;
+    }
+    
+    .nav__menu .nav__link.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hamburger animation */
+.nav__hamburger.is-active span:first-child {
+    transform: rotate(45deg) translate(4px, 4px);
+}
+
+.nav__hamburger.is-active span:last-child {
+    transform: rotate(-45deg) translate(4px, -4px);
+}
+
+
+/* ========================================
+   CUSTOM CURSOR (opcjonalny)
+   ======================================== */
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-text);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0;
+    transition: 
+        width 0.3s ease,
+        height 0.3s ease,
+        opacity 0.3s ease,
+        background 0.3s ease;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+}
+
+.custom-cursor.is-visible {
+    opacity: 0.5;
+}
+
+.custom-cursor.is-hovering {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.custom-cursor__dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background: var(--color-text);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+}
+
+.custom-cursor__dot.is-visible {
+    opacity: 1;
+}
+
+/* Ukryj domyślny cursor gdy custom jest aktywny */
+body:has(.custom-cursor.is-visible) {
+    cursor: none;
+}
+
+body:has(.custom-cursor.is-visible) a,
+body:has(.custom-cursor.is-visible) button {
+    cursor: none;
+}
+
+
+/* ========================================
+   WORKSHOP CARD – Ulepszone animacje
+   ======================================== */
+
+.workshop-card__image {
+    transition: 
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.6s ease;
+    will-change: transform, filter;
+}
+
+.workshop-card__overlay {
+    transition: background 0.5s ease;
+}
+
+.workshop-card__content {
+    transition: 
+        opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Staggered animation dla tytułu i tagu */
+.workshop-card__title {
+    transition-delay: 0.05s;
+}
+
+.workshop-card__tag {
+    transition-delay: 0.1s;
+}
+
+
+/* ========================================
+   PREFERS REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .reveal-hidden {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+    
+    .workshop-card__image {
+        transform: none !important;
+        filter: none !important;
+    }
+    
+    .hero__content {
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+
+/* ========================================
+   LOADING STATES
+   ======================================== */
+
+/* Skeleton loading dla zdjęć */
+.workshop-card__image-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.05) 0%,
+        rgba(0, 0, 0, 0.08) 50%,
+        rgba(0, 0, 0, 0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.workshop-card__image[loading]::before {
+    opacity: 1;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Image loaded state */
+.workshop-card__image.is-loaded + .workshop-card__image-wrapper::before {
+    opacity: 0;
+}
+/* ========================================
+   SCROLL PROGRESS BAR
+   ======================================== */
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-text);
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: calc(var(--z-nav) + 1);
+    pointer-events: none;
+    
+    /* Opcjonalnie: gradient */
+    /* background: linear-gradient(90deg, var(--color-text) 0%, var(--color-text-light) 100%); */
+}
+
+
+/* ========================================
+   EXTRAS CARD – Reveal animation
+   ======================================== */
+
+.extras-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 
+        opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.extras-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Jeśli JS nie załadowany, pokaż normalnie */
+.no-js .extras-card {
+    opacity: 1;
+    transform: none;
+}

@@ -1,0 +1,623 @@
+/* ========================================
+   PRICING.CSS
+   Style dla strony cennika
+   Minimalistyczny, editorial approach
+   ======================================== */
+
+
+/* ========================================
+   PRICING HEADER
+   ======================================== */
+
+.pricing-header {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: calc(var(--space-2xl) + 80px) var(--space-lg) var(--space-2xl);
+}
+
+.pricing-header__container {
+    max-width: 600px;
+}
+
+.pricing-header__title {
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-md);
+}
+
+.pricing-header__subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-light);
+    font-weight: 300;
+}
+
+
+/* ========================================
+   PRICING MAIN – Lista kart
+   ======================================== */
+
+.pricing-main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg) var(--space-2xl);
+}
+
+
+/* ========================================
+   PRICING CARD – Pojedynczy warsztat
+   ======================================== */
+
+.pricing-card {
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.pricing-card:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.pricing-card__link {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-lg) 0;
+    
+    transition: 
+        padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        background 0.3s ease;
+}
+
+.pricing-card__link:hover {
+    opacity: 1;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+
+/* Numer */
+.pricing-card__number {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+    opacity: 0.5;
+    min-width: 2em;
+}
+
+
+/* Header (tytuł) */
+.pricing-card__header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-md);
+}
+
+.pricing-card__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pricing-card__link:hover .pricing-card__title {
+    transform: translateX(10px);
+}
+
+
+/* Szczegóły (features) */
+.pricing-card__details {
+    justify-self: end;
+}
+
+.pricing-card__features {
+    display: flex;
+    gap: var(--space-md);
+    list-style: none;
+}
+
+.pricing-card__features li {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 2px;
+    
+    transition: 
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+.pricing-card__link:hover .pricing-card__features li {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+
+/* Cena */
+.pricing-card__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.1em;
+    min-width: 140px;
+    justify-content: flex-end;
+}
+
+.pricing-card__amount {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+}
+
+.pricing-card__currency {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+}
+
+
+/* Strzałka */
+.pricing-card__arrow {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: 
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.pricing-card__link:hover .pricing-card__arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.pricing-card__arrow svg {
+    display: block;
+}
+
+
+/* ========================================
+   PRICING EXTRAS – Dodatkowe opcje
+   ======================================== */
+
+.pricing-extras {
+    background: rgba(0, 0, 0, 0.02);
+    padding: var(--space-2xl) var(--space-lg);
+}
+
+.pricing-extras__container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pricing-extras__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+}
+
+
+/* Extras Card */
+.extras-card {
+    padding: var(--space-xl);
+    background: var(--color-bg);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    
+    transition: 
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s ease;
+}
+
+.extras-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.extras-card__icon {
+    margin-bottom: var(--space-md);
+    color: var(--color-text-light);
+}
+
+.extras-card__icon svg {
+    display: block;
+}
+
+.extras-card__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    margin-bottom: var(--space-sm);
+}
+
+.extras-card__text {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.extras-card__price {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    color: var(--color-text);
+}
+
+
+/* ========================================
+   PRICING FAQ
+   ======================================== */
+
+.pricing-faq {
+    padding: var(--space-2xl) var(--space-lg);
+}
+
+.pricing-faq__container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pricing-faq__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* FAQ Item */
+.faq-item {
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.faq-item:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.faq-item__question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 400;
+    
+    transition: color 0.3s ease;
+}
+
+.faq-item__question::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item__question:hover {
+    color: var(--color-text-light);
+}
+
+/* Ikona +/- */
+.faq-item__icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.faq-item__icon::before,
+.faq-item__icon::after {
+    content: '';
+    position: absolute;
+    background: currentColor;
+    transition: transform 0.3s ease;
+}
+
+/* Pozioma linia */
+.faq-item__icon::before {
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    transform: translateY(-50%);
+}
+
+/* Pionowa linia */
+.faq-item__icon::after {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    transform: translateX(-50%);
+}
+
+/* Otwarte – obróć pionową linię */
+.faq-item[open] .faq-item__icon::after {
+    transform: translateX(-50%) rotate(90deg);
+}
+
+
+/* Odpowiedź */
+.faq-item__answer {
+    padding: 0 0 var(--space-lg) 0;
+    overflow: hidden;
+    
+    /* Animacja przez max-height nie działa dobrze z <details>,
+       więc używamy animacji CSS */
+    animation: faqReveal 0.3s ease;
+}
+
+@keyframes faqReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.faq-item__answer p {
+    font-size: var(--text-base);
+    color: var(--color-text-light);
+    line-height: 1.7;
+    max-width: 600px;
+}
+
+.faq-item__answer a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.faq-item__answer a:hover {
+    opacity: 0.6;
+}
+
+
+/* ========================================
+   PRICING CTA
+   ======================================== */
+
+.pricing-cta {
+    padding: var(--space-2xl) var(--space-lg);
+    text-align: center;
+}
+
+.pricing-cta__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.pricing-cta__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+.pricing-cta__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    
+    position: relative;
+}
+
+.pricing-cta__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0.1em;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pricing-cta__link:hover {
+    opacity: 1;
+}
+
+.pricing-cta__link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.pricing-cta__link svg {
+    transition: transform 0.3s ease;
+}
+
+.pricing-cta__link:hover svg {
+    transform: translateX(5px);
+}
+
+
+/* ========================================
+   RESPONSYWNOŚĆ
+   ======================================== */
+
+@media (max-width: 1024px) {
+    
+    /* Extras grid */
+    .pricing-extras__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .extras-card {
+        padding: var(--space-lg);
+    }
+    
+}
+
+@media (max-width: 768px) {
+    
+    /* Header */
+    .pricing-header {
+        min-height: 40vh;
+        padding-top: calc(var(--space-xl) + 80px);
+    }
+    
+    /* Pricing card – stack layout */
+    .pricing-card__link {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        gap: var(--space-sm) var(--space-lg);
+    }
+    
+    .pricing-card__header {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    
+    .pricing-card__number {
+        display: none;
+    }
+    
+    .pricing-card__price {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        min-width: auto;
+    }
+    
+    .pricing-card__details {
+        grid-column: 1 / -1;
+        grid-row: 2 / 3;
+        justify-self: start;
+    }
+    
+    .pricing-card__features {
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+    }
+    
+    .pricing-card__arrow {
+        display: none;
+    }
+    
+    .pricing-card__link:hover {
+        padding-left: var(--space-sm);
+        padding-right: var(--space-sm);
+    }
+    
+    .pricing-card__link:hover .pricing-card__title {
+        transform: none;
+    }
+    
+    /* FAQ */
+    .faq-item__question {
+        font-size: var(--text-base);
+        padding: var(--space-md) 0;
+    }
+    
+    /* CTA */
+    .pricing-cta__link {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+    
+}
+
+@media (max-width: 480px) {
+    
+    .pricing-main {
+        padding: 0 var(--space-md) var(--space-xl);
+    }
+    
+    .pricing-card__features li {
+        font-size: var(--text-xs);
+        padding: var(--space-xs);
+    }
+    
+    .pricing-card__amount {
+        font-size: var(--text-xl);
+    }
+    
+    .pricing-extras {
+        padding: var(--space-xl) var(--space-md);
+    }
+    
+    .pricing-faq {
+        padding: var(--space-xl) var(--space-md);
+    }
+    
+}
+
+
+/* ========================================
+   HOVER STATES – Desktop only
+   ======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+    
+    .pricing-card {
+        position: relative;
+    }
+    
+    /* Subtle line animation */
+    .pricing-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--color-text);
+        transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .pricing-card:hover::before {
+        width: 100%;
+    }
+    
+}
+
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+    
+    .pricing-header {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+    
+    .pricing-card__link {
+        padding: 1rem 0;
+    }
+    
+    .pricing-card__arrow,
+    .pricing-cta,
+    .nav,
+    .footer {
+        display: none;
+    }
+    
+    .pricing-extras,
+    .pricing-faq {
+        break-inside: avoid;
+    }
+    
+}

@@ -1,0 +1,722 @@
+/* ========================================
+   WORKSHOP.CSS
+   Style dla podstrony pojedynczego warsztatu
+   Editorial layout inspirowany casamami.co
+   ======================================== */
+
+
+/* ========================================
+   WORKSHOP HERO
+   Pełnoekranowe zdjęcie otwierające
+   ======================================== */
+
+.workshop-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    max-height: 1200px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.workshop-hero__image-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.workshop-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+}
+
+/* Subtelny gradient na dole dla czytelności tekstu */
+.workshop-hero__image-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    pointer-events: none;
+}
+
+.workshop-hero__content {
+    position: relative;
+    z-index: 10;
+    padding: var(--space-2xl);
+    padding-bottom: calc(var(--space-2xl) + 60px);
+    color: #fff;
+}
+
+.workshop-hero__tag {
+    display: block;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    opacity: 0.7;
+    margin-bottom: var(--space-sm);
+}
+
+.workshop-hero__title {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+}
+
+/* Scroll indicator */
+.workshop-hero__scroll {
+    position: absolute;
+    bottom: var(--space-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.workshop-hero__scroll-line {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: scrollPulse 2s ease-in-out infinite;
+}
+
+
+/* ========================================
+   WORKSHOP INTRO
+   Tekst wprowadzający
+   ======================================== */
+
+.workshop-intro {
+    padding: var(--space-2xl) var(--space-lg);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.workshop-intro__container {
+    max-width: 800px;
+    text-align: center;
+}
+
+.workshop-intro__text {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--color-text);
+    font-style: italic;
+}
+
+
+/* ========================================
+   EDITORIAL GALLERY
+   Kolaż zdjęć – różne układy
+   ======================================== */
+
+.workshop-gallery {
+    padding: 0;
+}
+
+/* Reset dla wszystkich bloków */
+.gallery-block {
+    padding: var(--space-lg);
+}
+
+.gallery-figure {
+    margin: 0;
+    overflow: hidden;
+}
+
+.gallery-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-figure:hover img {
+    transform: scale(1.02);
+}
+
+
+/* --- BLOK: Pełna szerokość --- */
+.gallery-block--full {
+    padding: var(--space-xl) 0;
+}
+
+.gallery-block--full .gallery-figure {
+    width: 100%;
+}
+
+.gallery-block--full .gallery-figure img {
+    width: 100%;
+    height: 80vh;
+    max-height: 900px;
+    object-fit: cover;
+}
+
+/* Wariant: final – z padding */
+.gallery-block--final {
+    padding: var(--space-2xl) var(--space-lg);
+}
+
+.gallery-block--final .gallery-figure img {
+    height: 70vh;
+}
+
+
+/* --- BLOK: Dwie kolumny, asymetria --- */
+.gallery-block--duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    padding: var(--space-2xl) var(--space-lg);
+    align-items: end;
+}
+
+.gallery-block--duo .gallery-figure--left {
+    /* Lewa nieco wyżej */
+    transform: translateY(-10%);
+}
+
+.gallery-block--duo .gallery-figure--left img {
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+.gallery-block--duo .gallery-figure--right img {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+
+/* --- BLOK: Tekst + zdjęcie --- */
+.gallery-block--text-image {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--space-xl);
+    padding: var(--space-2xl);
+    align-items: center;
+    min-height: 80vh;
+}
+
+.gallery-block--image-text {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--space-xl);
+    padding: var(--space-2xl);
+    align-items: center;
+    min-height: 80vh;
+}
+
+.gallery-text {
+    padding: var(--space-xl);
+}
+
+.gallery-text p {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--color-text-light);
+}
+
+.gallery-block--text-image .gallery-figure img,
+.gallery-block--image-text .gallery-figure img {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+
+/* --- BLOK: Offset (przesunięcie) --- */
+.gallery-block--offset-right {
+    padding: var(--space-2xl);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.gallery-block--offset-right .gallery-figure {
+    width: 65%;
+}
+
+.gallery-block--offset-right .gallery-figure img {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.gallery-block--offset-left {
+    padding: var(--space-2xl);
+    display: flex;
+    justify-content: flex-start;
+}
+
+.gallery-block--offset-left .gallery-figure {
+    width: 65%;
+}
+
+
+/* --- BLOK: Trzy zdjęcia --- */
+.gallery-block--trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    padding: var(--space-2xl) var(--space-lg);
+}
+
+.gallery-block--trio .gallery-figure:nth-child(2) {
+    transform: translateY(15%);
+}
+
+.gallery-block--trio .gallery-figure img {
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+
+/* ========================================
+   WORKSHOP DETAILS
+   Informacje praktyczne
+   ======================================== */
+
+.workshop-details {
+    padding: var(--space-2xl) var(--space-lg);
+    background: var(--color-bg);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.workshop-details__container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.workshop-details__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+}
+
+.workshop-detail {
+    padding: var(--space-lg) 0;
+}
+
+.workshop-detail__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.workshop-detail__list {
+    list-style: none;
+}
+
+.workshop-detail__list li {
+    font-size: var(--text-base);
+    color: var(--color-text);
+    padding: var(--space-xs) 0;
+    position: relative;
+    padding-left: 1em;
+}
+
+.workshop-detail__list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-text-light);
+    opacity: 0.4;
+}
+
+
+/* ========================================
+   WORKSHOP PRICING
+   Cena i przycisk rezerwacji
+   ======================================== */
+
+.workshop-pricing {
+    padding: var(--space-2xl) var(--space-lg);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.workshop-pricing__container {
+    text-align: center;
+}
+
+.workshop-pricing__price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.15em;
+    margin-bottom: var(--space-xl);
+}
+
+.workshop-pricing__amount {
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 12vw, 10rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.workshop-pricing__currency {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--color-text-light);
+}
+
+.workshop-pricing__per {
+    font-size: var(--text-base);
+    color: var(--color-text-light);
+    margin-left: 0.5em;
+}
+
+.workshop-pricing__action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+/* Przycisk – minimalistyczny, elegancki */
+.workshop-pricing__button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    
+    font-size: var(--text-sm);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    
+    color: var(--color-bg);
+    background: var(--color-text);
+    border: none;
+    
+    transition: 
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.workshop-pricing__button:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.workshop-pricing__button svg {
+    transition: transform 0.3s ease;
+}
+
+.workshop-pricing__button:hover svg {
+    transform: translateX(4px);
+}
+
+.workshop-pricing__note {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+}
+
+
+/* ========================================
+   WORKSHOP NEXT
+   Link do następnego warsztatu
+   ======================================== */
+
+.workshop-next {
+    position: relative;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.workshop-next__link {
+    display: block;
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.workshop-next__image-wrapper {
+    position: absolute;
+    inset: 0;
+}
+
+.workshop-next__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(0.85);
+}
+
+.workshop-next__link:hover .workshop-next__image {
+    transform: scale(1.03);
+}
+
+.workshop-next__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 10;
+    color: #fff;
+}
+
+.workshop-next__label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    opacity: 0.7;
+    margin-bottom: var(--space-sm);
+}
+
+.workshop-next__title {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    
+    /* Reveal on hover */
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workshop-next__link:hover .workshop-next__title {
+    transform: translateY(-10px);
+}
+
+
+/* ========================================
+   RESPONSYWNOŚĆ
+   ======================================== */
+
+@media (max-width: 1024px) {
+    
+    /* Gallery adjustments */
+    .gallery-block--duo {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .gallery-block--duo .gallery-figure--left {
+        transform: none;
+    }
+    
+    .gallery-block--text-image,
+    .gallery-block--image-text {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        min-height: auto;
+        padding: var(--space-xl) var(--space-lg);
+    }
+    
+    /* Na mobile: tekst zawsze pierwszy */
+    .gallery-block--image-text {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    
+    .gallery-block--trio {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .gallery-block--trio .gallery-figure:nth-child(2) {
+        transform: none;
+    }
+    
+    .gallery-block--offset-right,
+    .gallery-block--offset-left {
+        justify-content: center;
+    }
+    
+    .gallery-block--offset-right .gallery-figure,
+    .gallery-block--offset-left .gallery-figure {
+        width: 100%;
+    }
+    
+    /* Details grid */
+    .workshop-details__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+}
+
+@media (max-width: 768px) {
+    
+    /* Hero */
+    .workshop-hero__content {
+        padding: var(--space-lg);
+        padding-bottom: calc(var(--space-lg) + 80px);
+    }
+    
+    .workshop-hero__title {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+    
+    /* Intro */
+    .workshop-intro {
+        padding: var(--space-xl) var(--space-md);
+        min-height: 50vh;
+    }
+    
+    .workshop-intro__text {
+        font-size: clamp(1.25rem, 4vw, 1.5rem);
+    }
+    
+    /* Gallery */
+    .gallery-block {
+        padding: var(--space-md);
+    }
+    
+    .gallery-block--full {
+        padding: var(--space-lg) 0;
+    }
+    
+    .gallery-block--full .gallery-figure img {
+        height: 60vh;
+    }
+    
+    .gallery-text {
+        padding: var(--space-md);
+    }
+    
+    .gallery-text p {
+        font-size: var(--text-lg);
+    }
+    
+    /* Pricing */
+    .workshop-pricing {
+        min-height: auto;
+        padding: var(--space-xl) var(--space-lg);
+    }
+    
+    .workshop-pricing__amount {
+        font-size: clamp(3rem, 15vw, 5rem);
+    }
+    
+    /* Next workshop */
+    .workshop-next__link {
+        height: 50vh;
+        min-height: 400px;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    
+    .workshop-hero {
+        min-height: 500px;
+    }
+    
+    .workshop-hero__content {
+        padding: var(--space-md);
+        padding-bottom: calc(var(--space-md) + 60px);
+    }
+    
+    .gallery-block--duo {
+        gap: var(--space-md);
+    }
+    
+    .workshop-pricing__button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+}
+
+
+/* ========================================
+   WARIANTY KOLORYSTYCZNE
+   Dla różnych typów warsztatów
+   ======================================== */
+
+/* Ciemny wariant */
+.workshop-page--dark {
+    --color-bg: #1A1A1A;
+    --color-text: #FAFAFA;
+    --color-text-light: #999999;
+}
+
+.workshop-page--dark .workshop-details {
+    background: #111111;
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.workshop-page--dark .workshop-detail__title {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.workshop-page--dark .workshop-pricing__button {
+    background: #FAFAFA;
+    color: #1A1A1A;
+}
+
+.workshop-page--dark .footer {
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+
+/* ========================================
+   IMAGE LOADING STATES
+   ======================================== */
+
+.gallery-figure {
+    position: relative;
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.gallery-figure img {
+    opacity: 0;
+    transition: 
+        opacity 0.6s ease,
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-figure img.is-loaded {
+    opacity: 1;
+}
+
+/* Placeholder shimmer */
+.gallery-figure::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.03) 0%,
+        rgba(0, 0, 0, 0.06) 50%,
+        rgba(0, 0, 0, 0.03) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.gallery-figure:has(img.is-loaded)::before {
+    opacity: 0;
+}

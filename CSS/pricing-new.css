@@ -1,0 +1,267 @@
+/* ========================================
+   PRICING-NEW.CSS
+   Nowy layout cennika – na przemian lewo/prawo
+   ======================================== */
+
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.pricing-header {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: calc(var(--space-2xl) + 80px) var(--space-lg) var(--space-xl);
+}
+
+.pricing-header__title {
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+}
+
+
+/* ========================================
+   PRICING LIST
+   ======================================== */
+
+.pricing-list {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg) var(--space-2xl);
+}
+
+
+/* ========================================
+   PRICING ITEM
+   ======================================== */
+
+.pricing-item {
+    margin-bottom: var(--space-2xl);
+}
+
+.pricing-item__link {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    align-items: center;
+    gap: var(--space-xl);
+    
+    padding: var(--space-lg);
+    background: transparent;
+    
+    transition: background 0.3s ease;
+}
+
+.pricing-item__link:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+
+/* Zdjęcie */
+.pricing-item__image {
+    margin: 0;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+}
+
+.pricing-item__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pricing-item__link:hover .pricing-item__image img {
+    transform: scale(1.03);
+}
+
+
+/* Info */
+.pricing-item__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.pricing-item__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+}
+
+.pricing-item__meta {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.pricing-item__meta span {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+}
+
+.pricing-item__meta span:not(:last-child)::after {
+    content: '·';
+    margin-left: var(--space-md);
+    opacity: 0.4;
+}
+
+
+/* Cena */
+.pricing-item__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.15em;
+    padding-left: var(--space-xl);
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.pricing-item__amount {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+}
+
+.pricing-item__currency {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+}
+
+
+/* ========================================
+   WARIANTY: LEWO / PRAWO
+   ======================================== */
+
+/* Domyślnie: zdjęcie po lewej */
+.pricing-item--left .pricing-item__link {
+    grid-template-columns: 1.2fr 1fr auto;
+}
+
+/* Prawo: zdjęcie po prawej */
+.pricing-item--right .pricing-item__link {
+    grid-template-columns: auto 1fr 1.2fr;
+    direction: rtl;
+}
+
+.pricing-item--right .pricing-item__link > * {
+    direction: ltr;
+}
+
+.pricing-item--right .pricing-item__info {
+    text-align: right;
+}
+
+.pricing-item--right .pricing-item__meta {
+    justify-content: flex-end;
+}
+
+.pricing-item--right .pricing-item__price {
+    padding-left: 0;
+    padding-right: var(--space-xl);
+    border-left: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+
+/* ========================================
+   HOVER EFFECT – Strzałka
+   ======================================== */
+
+.pricing-item__price {
+    position: relative;
+}
+
+.pricing-item__price::after {
+    content: '→';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%) translateX(-10px);
+    
+    font-size: var(--text-lg);
+    opacity: 0;
+    transition: 
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.pricing-item--right .pricing-item__price::after {
+    right: auto;
+    left: -30px;
+    content: '←';
+    transform: translateY(-50%) translateX(10px);
+}
+
+.pricing-item__link:hover .pricing-item__price::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+
+/* ========================================
+   RESPONSYWNOŚĆ
+   ======================================== */
+
+@media (max-width: 1024px) {
+    
+    .pricing-item__link,
+    .pricing-item--left .pricing-item__link,
+    .pricing-item--right .pricing-item__link {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        direction: ltr;
+    }
+    
+    .pricing-item--right .pricing-item__info {
+        text-align: left;
+    }
+    
+    .pricing-item--right .pricing-item__meta {
+        justify-content: flex-start;
+    }
+    
+    .pricing-item__price {
+        padding-left: 0;
+        padding-right: 0;
+        border: none;
+        padding-top: var(--space-md);
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    
+    .pricing-item--right .pricing-item__price {
+        border-right: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    
+    .pricing-item__price::after,
+    .pricing-item--right .pricing-item__price::after {
+        display: none;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    
+    .pricing-header {
+        min-height: 30vh;
+    }
+    
+    .pricing-item {
+        margin-bottom: var(--space-xl);
+    }
+    
+    .pricing-item__link {
+        padding: var(--space-md);
+    }
+    
+    .pricing-item__image {
+        aspect-ratio: 4 / 3;
+    }
+    
+}
