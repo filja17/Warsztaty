@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <title>Rezerwacja | Atelier</title>
+    
+    <style>
+        .payment-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: calc(var(--space-2xl) + 80px) var(--space-lg);
+            text-align: center;
+        }
+        
+        .payment-container {
+            max-width: 500px;
+        }
+        
+        .payment-title {
+            font-size: var(--text-2xl);
+            font-weight: 300;
+            margin-bottom: var(--space-md);
+        }
+        
+        .payment-workshop {
+            font-family: var(--font-heading);
+            font-size: var(--text-3xl);
+            font-weight: 300;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .payment-info {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-xl);
+            line-height: 1.7;
+        }
+        
+        .payment-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            
+            padding: var(--space-md) var(--space-xl);
+            min-width: 250px;
+            
+            font-size: var(--text-sm);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            
+            color: var(--color-bg);
+            background: var(--color-text);
+            border: none;
+            cursor: pointer;
+            
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .payment-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            opacity: 1;
+        }
+        
+        .payment-note {
+            margin-top: var(--space-lg);
+            font-size: var(--text-sm);
+            color: var(--color-text-light);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nawigacja -->
+    <nav class="nav" role="navigation">
+        <div class="nav__container">
+            <a href="index.html" class="nav__logo">Atelier</a>
+            <ul class="nav__menu">
+                <li><a href="index.html" class="nav__link">Oferta</a></li>
+                <li><a href="pricing.html" class="nav__link">Cennik</a></li>
+                <li><a href="about.html" class="nav__link">O nas</a></li>
+                <li><a href="contact.html" class="nav__link">Kontakt</a></li>
+            </ul>
+            <button class="nav__hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="payment-page">
+        <div class="payment-container">
+            <p class="payment-title">Rezerwacja warsztatu</p>
+            <h1 class="payment-workshop" id="workshopName">Ładowanie...</h1>
+            
+            <p class="payment-info">
+                Po kliknięciu zostaniesz przekierowany do bezpiecznej strony płatności. 
+                Po zaksięgowaniu wpłaty otrzymasz potwierdzenie na email.
+            </p>
+            
+            <a href="#" class="payment-button" id="paymentLink">
+                Przejdź do płatności
+            </a>
+            
+            <p class="payment-note">
+                Masz pytania? <a href="contact.html">Napisz do nas</a>
+            </p>
+        </div>
+    </main>
+
+    <script src="js/main.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    
+    <script>
+        // Dane warsztatów (później zastąpisz prawdziwymi linkami Stripe)
+        const workshops = {
+            'gips-polimerowy': {
+                name: 'Gips polimerowy',
+                price: 280,
+                // Tutaj wstawisz link ze Stripe
+                paymentLink: 'https://buy.stripe.com/TWOJ_LINK_GIPS'
+            },
+            'perfumy-arabskie': {
+                name: 'Arabskie perfumy naturalne',
+                price: 320,
+                paymentLink: 'https://buy.stripe.com/TWOJ_LINK_PERFUMY'
+            },
+            'swiece-sojowe': {
+                name: 'Świece sojowe',
+                price: 240,
+                paymentLink: 'https://buy.stripe.com/TWOJ_LINK_SWIECE'
+            },
+            'fermentacja': {
+                name: 'Świat fermentacji',
+                price: 290,
+                paymentLink: 'https://buy.stripe.com/TWOJ_LINK_FERMENTACJA'
+            },
+            'ebru': {
+                name: 'Ebru – marmurkowanie tkanin',
+                price: 350,
+                paymentLink: 'https://buy.stripe.com/TWOJ_LINK_EBRU'
+            }
+        };
+        
+        // Pobierz parametr z URL
+        const params = new URLSearchParams(window.location.search);
+        const workshopId = params.get('workshop');
+        
+        if (workshopId && workshops[workshopId]) {
+            const workshop = workshops[workshopId];
+            document.getElementById('workshopName').textContent = workshop.name;
+            document.getElementById('paymentLink').href = workshop.paymentLink;
+        } else {
+            document.getElementById('workshopName').textContent = 'Nieznany warsztat';
+            document.getElementById('paymentLink').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

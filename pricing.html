@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cennik warsztatów – przejrzyste ceny">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pricing-new.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <title>Cennik | Atelier</title>
+</head>
+<body>
+
+    <!-- Nawigacja -->
+    <nav class="nav" role="navigation">
+        <div class="nav__container">
+            <a href="index.html" class="nav__logo">Atelier</a>
+            <ul class="nav__menu">
+                <li><a href="index.html" class="nav__link">Oferta</a></li>
+                <li><a href="pricing.html" class="nav__link nav__link--active">Cennik</a></li>
+                <li><a href="about.html" class="nav__link">O nas</a></li>
+                <li><a href="contact.html" class="nav__link">Kontakt</a></li>
+            </ul>
+            <button class="nav__hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <!-- Header -->
+    <header class="pricing-header">
+        <div class="pricing-header__container" data-reveal="fade">
+            <h1 class="pricing-header__title">Cennik</h1>
+        </div>
+    </header>
+
+
+    <!-- Lista warsztatów -->
+    <main class="pricing-list">
+        
+        <!-- Warsztat 1: Gips polimerowy (LEWO) -->
+        <article class="pricing-item pricing-item--left" data-reveal="fade">
+            <a href="payment.html?workshop=gips-polimerowy" class="pricing-item__link">
+                <figure class="pricing-item__image">
+                    <img 
+                        src="assets/images/workshops/gips-polimerowy.jpg" 
+                        alt="Gips polimerowy"
+                        loading="lazy"
+                    >
+                </figure>
+                <div class="pricing-item__info">
+                    <h2 class="pricing-item__title">Gips polimerowy</h2>
+                    <div class="pricing-item__meta">
+                        <span>4–6 osób</span>
+                        <span>3 godziny</span>
+                    </div>
+                </div>
+                <div class="pricing-item__price">
+                    <span class="pricing-item__amount">280</span>
+                    <span class="pricing-item__currency">PLN</span>
+                </div>
+            </a>
+        </article>
+
+        <!-- Warsztat 2: Perfumy arabskie (PRAWO) -->
+        <article class="pricing-item pricing-item--right" data-reveal="fade">
+            <a href="payment.html?workshop=perfumy-arabskie" class="pricing-item__link">
+                <figure class="pricing-item__image">
+                    <img 
+                        src="assets/images/workshops/perfumy-arabskie.jpg" 
+                        alt="Arabskie perfumy naturalne"
+                        loading="lazy"
+                    >
+                </figure>
+                <div class="pricing-item__info">
+                    <h2 class="pricing-item__title">Arabskie perfumy naturalne</h2>
+                    <div class="pricing-item__meta">
+                        <span>4–8 osób</span>
+                        <span>2.5 godziny</span>
+                    </div>
+                </div>
+                <div class="pricing-item__price">
+                    <span class="pricing-item__amount">320</span>
+                    <span class="pricing-item__currency">PLN</span>
+                </div>
+            </a>
+        </article>
+
+        <!-- Warsztat 3: Świece sojowe (LEWO) -->
+        <article class="pricing-item pricing-item--left" data-reveal="fade">
+            <a href="payment.html?workshop=swiece-sojowe" class="pricing-item__link">
+                <figure class="pricing-item__image">
+                    <img 
+                        src="assets/images/workshops/swiece-sojowe.jpg" 
+                        alt="Świece sojowe"
+                        loading="lazy"
+                    >
+                </figure>
+                <div class="pricing-item__info">
+                    <h2 class="pricing-item__title">Świece sojowe</h2>
+                    <div class="pricing-item__meta">
+                        <span>4–8 osób</span>
+                        <span>2 godziny</span>
+                    </div>
+                </div>
+                <div class="pricing-item__price">
+                    <span class="pricing-item__amount">240</span>
+                    <span class="pricing-item__currency">PLN</span>
+                </div>
+            </a>
+        </article>
+
+        <!-- Warsztat 4: Fermentacja (PRAWO) -->
+        <article class="pricing-item pricing-item--right" data-reveal="fade">
+            <a href="payment.html?workshop=fermentacja" class="pricing-item__link">
+                <figure class="pricing-item__image">
+                    <img 
+                        src="assets/images/workshops/fermentacja.jpg" 
+                        alt="Świat fermentacji"
+                        loading="lazy"
+                    >
+                </figure>
+                <div class="pricing-item__info">
+                    <h2 class="pricing-item__title">Świat fermentacji</h2>
+                    <div class="pricing-item__meta">
+                        <span>4–6 osób</span>
+                        <span>3 godziny</span>
+                    </div>
+                </div>
+                <div class="pricing-item__price">
+                    <span class="pricing-item__amount">290</span>
+                    <span class="pricing-item__currency">PLN</span>
+                </div>
+            </a>
+        </article>
+
+        <!-- Warsztat 5: Ebru (LEWO) -->
+        <article class="pricing-item pricing-item--left" data-reveal="fade">
+            <a href="payment.html?workshop=ebru" class="pricing-item__link">
+                <figure class="pricing-item__image">
+                    <img 
+                        src="assets/images/workshops/ebru.jpg" 
+                        alt="Ebru – marmurkowanie tkanin"
+                        loading="lazy"
+                    >
+                </figure>
+                <div class="pricing-item__info">
+                    <h2 class="pricing-item__title">Ebru – marmurkowanie tkanin</h2>
+                    <div class="pricing-item__meta">
+                        <span>4–8 osób</span>
+                        <span>3 godziny</span>
+                    </div>
+                </div>
+                <div class="pricing-item__price">
+                    <span class="pricing-item__amount">350</span>
+                    <span class="pricing-item__currency">PLN</span>
+                </div>
+            </a>
+        </article>
+
+    </main>
+
+
+    <!-- Stopka -->
+    <footer class="footer">
+        <div class="footer__container">
+            <p class="footer__copyright">© 2024 Atelier</p>
+            <a href="mailto:filiptjaworski@gmail.com" class="footer__email">filiptjaworski@gmail.com</a>
+        </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+
+</body>
+</html>
